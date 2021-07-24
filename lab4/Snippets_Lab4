@@ -1,0 +1,45 @@
+
+Lab 4 Fine Tuning the Cache 
+
+Lab 4 - Exercise 1 Finding your Cached Files 
+Step 2
+curl -I localhost
+curl -I localhost
+
+Step 3
+cd /data/nginx/cache
+
+Step 4
+ls
+
+Step 5
+echo -n httplocalhost/ | md5sum
+
+Step 6
+sudo ls 5
+
+Step 7
+sudo ls 5/46
+
+Step 8
+sudo cat 5/46/f7fbc9561a3975ce1ecff55583e50465
+
+
+Lab 4 - Exercise 2 Cache Purging
+Step 1
+sudo vim /etc/nginx/conf.d/default.conf
+
+map $request_method $purge_method {
+	default  0;
+	PURGE    1;
+}
+
+Step 2
+        proxy_cache_purge $purge_method;
+
+Step 3
+sudo nginx -s reload
+
+Step 4
+curl -I -X PURGE http://localhost/
+

@@ -1,0 +1,38 @@
+version: '2'
+services:
+ mongodb:
+   image: mongo:latest
+   container_name: mongodb
+   ports:
+     - "27017:27017"
+   volumes:
+     - db_data:/data/db
+   environment:
+    MONGO_DATABASE: dbzdata
+   networks:
+    - test_network
+ 
+ web:
+   image: pymongo:app
+   build:
+    context: ./
+   container_name: pymongo-app
+   ports:
+    - "5000:5000"
+   depends_on:
+    - mongodb
+   environment:
+    MONGO_HOST: mongodb
+    LINK: www.nginx.com
+    TEXT1: Intro to MicroServices
+    TEXT2: PyMongo App
+    LOGO: static/nginx-logo.png
+    COMPANY: NGINX Inc.
+   networks:
+    - test_network
+
+networks:
+  test_network:
+ 
+volumes:
+   db_data:

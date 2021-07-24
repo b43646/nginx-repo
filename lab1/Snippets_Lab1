@@ -1,0 +1,26 @@
+Lab 1 - Using Browser Cache
+
+Lab 1 - Exercise 1 View Caching Response Headers
+
+Step 3
+http://http-caching-demo.herokuapp.com
+
+Step 7
+http://http-caching-demo.herokuapp.com/?cache=true
+
+Step 8
+Open another Chrome browser tab
+http://http-caching-demo.herokuapp.com/?cache=true
+
+Step 9
+http://http-caching-demo.herokuapp.com/?cache=true
+
+Step 10
+http://http-caching-demo.herokuapp.com/?cache=true&etag=true
+
+Step 11
+http://http-caching-demo.herokuapp.com/?cache=true&etag=true
+
+Step 12
+http://http-caching-demo.herokuapp.com/?cache=true&etag=true
+

@@ -1,0 +1,100 @@
+
+Lab 3 Controlling Cached Responses
+
+Lab 3 - Exercise 1 Controlling Cached Responses
+
+Step 2
+sudo vim /etc/nginx/conf.d/default.conf
+    proxy_cache_min_uses 5;
+
+Step 3
+sudo nginx -s reload
+
+Step 4
+curl -I http://localhost
+
+Step 5
+curl -I http://localhost
+curl -I http://localhost
+curl -I http://localhost
+curl -I http://localhost
+curl -I http://localhost
+
+Step 6
+sudo vim /etc/nginx/conf.d/default.conf
+#proxy_cache_min_uses 5;
+
+sudo nginx -s reload
+
+
+Lab 3 - Exercise 2 NGINX Cache Revalidation
+
+Step 1
+curl -I localhost/static/goku.gif
+
+Step 2
+sudo vim /etc/nginx/conf.d/default.conf
+
+Step 3
+    proxy_ignore_headers Cache-Control Expires;
+
+Step 4
+proxy_cache_valid 200 30s;
+
+Step 5
+sudo nginx -s reload
+
+Step 6
+docker logs -f pymongo-app
+
+Step 7
+curl -I localhost/static/goku.gif
+
+Step 8
+curl -I localhost/static/goku.gif
+
+Step 9
+curl -I localhost/static/goku.gif
+
+Step 10
+sudo vim /etc/nginx/conf.d/default.conf
+    proxy_cache_revalidate on;
+
+Step 11
+sudo nginx -s reload
+
+Step 12
+curl -I localhost/static/goku.gif
+curl -I localhost/static/goku.gif
+
+
+Lab 3 - Exercise 3 Serving Stale Content 
+Step 1
+curl -I localhost/static/goku.gif
+
+Step 2
+curl -I localhost/static/goku.gif
+
+Step 3
+docker stop pymongo-app
+
+Step 4
+curl -I localhost/static/goku.gif
+
+Step 5
+sudo vim /etc/nginx/conf.d/default.conf
+    proxy_cache_use_stale error;
+
+Step 6
+sudo nginx -s reload
+
+Step 7
+curl -I localhost/static/goku.gif
+
+Step 8
+docker start pymongo-app
+
+Step 9
+curl -I localhost/static/goku.gif
+
+
